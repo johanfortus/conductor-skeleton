@@ -1,0 +1,11 @@
+{
+  "name": "hello_task",
+  "description": "Example task that returns a greeting message.",
+  "retryCount": 3,
+  "timeoutSeconds": 120,
+  "inputKeys": ["name"],
+  "outputKeys": ["message"],
+  "timeoutPolicy": "TIME_OUT_WF",
+  "retryLogic": "FIXED",
+  "retryDelaySeconds": 5
+}

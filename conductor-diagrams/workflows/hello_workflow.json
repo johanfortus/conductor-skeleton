@@ -1,0 +1,24 @@
+{
+  "name": "hello_workflow",
+  "description": "Simple workflow that runs a single hello_task.",
+  "version": 1,
+  "schemaVersion": 2,
+  "inputParameters": [
+    "name"
+  ],
+  "tasks": [
+    {
+      "name": "hello_task",
+      "taskReferenceName": "hello_task_ref",
+      "type": "SIMPLE",
+      "inputParameters": {
+        "name": "${workflow.input.name}"
+      }
+    }
+  ],
+  "outputParameters": {
+    "message": "${hello_task_ref.output.message}"
+  },
+  "restartable": true,
+  "timeoutSeconds": 300
+}
