@@ -1,0 +1,54 @@
+# --- macOS ---
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# --- Python bytecode / caches ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Virtual environments ---
+venv/
+.venv/
+env/
+ENV/
+
+# --- Packaging / build outputs ---
+build/
+dist/
+*.egg-info/
+.eggs/
+wheels/
+*.whl
+
+# --- Tests / coverage ---
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.tox/
+.nox/
+
+# --- Type check / linters ---
+.mypy_cache/
+.pyright/
+.ruff_cache/
+
+# --- Notebooks ---
+.ipynb_checkpoints/
+
+# --- Logs ---
+*.log
+
+# --- Secrets (only if you use them) ---
+.env
+.env.*
+*.pem
+*.key
+
+# --- IDEs ---
+.vscode/
+.idea/
+*.iml
