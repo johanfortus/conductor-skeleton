@@ -1,12 +1,12 @@
 [
   {
-    "name": "hello_task",
-    "description": "Example task that returns a greeting message.",
+    "name": "hello_log_task",
+    "description": "Logs the greeting message produced by hello_task.",
     "retryCount": 3,
     "timeoutSeconds": 7200,
     "responseTimeoutSeconds": 3600,
-    "inputKeys": ["name"],
-    "outputKeys": ["message"],
+    "inputKeys": ["message"],
+    "outputKeys": ["logged", "original_message"],
     "timeoutPolicy": "TIME_OUT_WF",
     "retryLogic": "FIXED",
     "retryDelaySeconds": 5

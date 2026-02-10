@@ -1,7 +1,7 @@
 {
   "name": "hello_workflow",
-  "description": "Simple workflow that runs a single hello_task.",
-  "version": 1,
+  "description": "Simple workflow that runs a hello_task then logs the result.",
+  "version": 2,
   "schemaVersion": 2,
   "inputParameters": [
     "name"
@@ -14,10 +14,19 @@
       "inputParameters": {
         "name": "${workflow.input.name}"
       }
+    },
+    {
+      "name": "hello_log_task",
+      "taskReferenceName": "hello_log_task_ref",
+      "type": "SIMPLE",
+      "inputParameters": {
+        "message": "${hello_task_ref.output.message}"
+      }
     }
   ],
   "outputParameters": {
-    "message": "${hello_task_ref.output.message}"
+    "message": "${hello_log_task_ref.output.original_message}",
+    "logged": "${hello_log_task_ref.output.logged}"
   },
   "restartable": true,
   "timeoutSeconds": 300
