@@ -1,20 +1,17 @@
-from hello_service.utils.conductor_utils import ConductorRouter, Task
+# hello_service/workers/hello.py
 
-# This router will hold the workers for this module
-hello_router = ConductorRouter()
+from conductor.client.worker.worker_task import worker_task
 
 
-@hello_router.task(task_name="hello_task")
-def say_hello(task: Task):
+@worker_task(task_definition_name="hello_task", thread_count=1)
+def say_hello(name: str = "world") -> dict:
     """
-    Example task handler.
+    Minimal Conductor worker.
 
-    In a real worker, 'task.input_data' would come from Conductor.
-    For now, our TaskHandler will pass {"name": "world"} as demo input.
+    - task_definition_name MUST match the 'name' in your hello_task.json
+    - 'name' parameter matches the key coming from the workflow input
     """
-    name = task.input_data.get("name", "world")
     message = f"Hello, {name}!"
     print(f"[say_hello] {message}")
-
-    # In Conductor, you'd return a dict that becomes task output
+    # This becomes task.outputData in Conductor
     return {"message": message}

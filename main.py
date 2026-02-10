@@ -1,23 +1,27 @@
 # main.py
-from hello_service.utils.conductor_utils import get_task_handler
-from hello_service.workers.hello import hello_router
+
+from conductor.client.automator.task_handler import TaskHandler
+from conductor.client.configuration.configuration import Configuration
+
+# Import the module so the @worker_task decorator runs
+import hello_service.workers.hello  # noqa: F401
 
 
 def main() -> None:
     """
     Entry point for the worker service.
 
-    In a real deployment, this would:
-    - configure the Conductor client
-    - start polling for tasks
-    - run forever
-
-    For now, we just:
-    - gather workers from our routers
-    - simulate running each worker once
+    - Creates a Configuration pointing at your Conductor server.
+    - Starts the TaskHandler, which polls for tasks and dispatches them
+      to any @worker_task-annotated functions that have been imported.
     """
-    handler = get_task_handler([hello_router])
-    handler.start()
+    config = Configuration()  # defaults to http://localhost:8080/api
+    # If your server is elsewhere, do:
+    # config = Configuration(server_api_url="http://localhost:8080/api")
+
+    task_handler = TaskHandler(configuration=config)
+    task_handler.start_processes()
+    task_handler.join_processes()
 
 
 if __name__ == "__main__":
