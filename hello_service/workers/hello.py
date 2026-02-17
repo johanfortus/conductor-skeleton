@@ -1,9 +1,11 @@
 # hello_service/workers/hello.py
 
-from conductor.client.worker.worker_task import worker_task
+from hello_service.utils.conductor_utils import ConductorRouter
+
+hello_router = ConductorRouter()
 
 
-@worker_task(task_definition_name="hello_task", thread_count=1)
+@hello_router.task(task_name="hello_task", thread_count=1)
 def say_hello(name: str = "world") -> dict:
     """
     Minimal Conductor worker.
@@ -17,7 +19,7 @@ def say_hello(name: str = "world") -> dict:
     return {"message": message}
 
 
-@worker_task(task_definition_name="hello_log_task", thread_count=1)
+@hello_router.task(task_name="hello_log_task", thread_count=1)
 def log_message(message: str) -> dict:
     """
     Second task in the workflow.
