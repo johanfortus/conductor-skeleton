@@ -1,0 +1,13 @@
+[
+  {
+    "name": "print_summary_task",
+    "retryCount": 2,
+    "timeoutSeconds": 7200,
+    "responseTimeoutSeconds": 3600,
+    "inputKeys": ["created_user", "users_http_response"],
+    "outputKeys": ["created_user", "total_users", "raw_users_body"],
+    "timeoutPolicy": "TIME_OUT_WF",
+    "retryLogic": "FIXED",
+    "retryDelaySeconds": 2
+  }
+]

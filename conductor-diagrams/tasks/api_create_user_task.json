@@ -1,0 +1,13 @@
+[
+  {
+    "name": "api_create_user_task",
+    "retryCount": 2,
+    "timeoutSeconds": 7200,
+    "responseTimeoutSeconds": 3600,
+    "inputKeys": ["username"],
+    "outputKeys": ["created_user"],
+    "timeoutPolicy": "TIME_OUT_WF",
+    "retryLogic": "FIXED",
+    "retryDelaySeconds": 2
+  }
+]
